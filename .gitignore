@@ -1,0 +1,8 @@
+coverage
+dist
+node_modules
+*.tsbuildinfo
+.shots/
+apps/server/.env
+__pycache__/
+*.pyc
