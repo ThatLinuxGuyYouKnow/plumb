@@ -1,0 +1,95 @@
+/*
+ * Plumb design tokens (SPEC §10). Light values on bare :root; dark under
+ * prefers-color-scheme (unless data-theme="light") and data-theme="dark".
+ */
+:root {
+  --bg: #e9ecee;
+  --panel: #f8f9fa;
+  --panel-2: #eef1f3;
+  --line: #d8dde1;
+  --line-2: #c4ccd2;
+  --ink: #14181c;
+  --ink-2: #47515a;
+  --ink-3: #7a8590;
+  --cv: #f4f6f7;
+  --grid-a: #e7ebee;
+  --grid-b: #d8dee2;
+  --wall: #171c21;
+  --furn: #ffffff;
+  --furn-2: #ebeff2;
+  --furn-line: #6f7a85;
+  --glass: #cfe3f2;
+  --f-timber: #efe5d3;
+  --f-tile: #e1e9ec;
+  --f-carpet: #e6e3ee;
+  --f-stone: #e7e5df;
+  --pat: rgba(70, 55, 30, 0.12);
+  --you: #2956f0;
+  --pen: #e2472b;
+  --pen-soft: rgba(226, 71, 43, 0.1);
+  --ok: #1c8a5a;
+  --shadow: 0 1px 2px rgba(10, 20, 30, 0.06), 0 8px 24px rgba(10, 20, 30, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0d1013;
+    --panel: #161a1e;
+    --panel-2: #1d2227;
+    --line: #2a3036;
+    --line-2: #3a424a;
+    --ink: #e8ecef;
+    --ink-2: #a6b0b8;
+    --ink-3: #6f7b85;
+    --cv: #12161a;
+    --grid-a: #1a1f24;
+    --grid-b: #242b31;
+    --wall: #e4e9ed;
+    --furn: #1f252b;
+    --furn-2: #2a323a;
+    --furn-line: #7d8893;
+    --glass: #27475e;
+    --f-timber: #2a2520;
+    --f-tile: #1e2a2f;
+    --f-carpet: #25222e;
+    --f-stone: #27262a;
+    --pat: rgba(255, 255, 255, 0.06);
+    --you: #7c98ff;
+    --pen: #ff6b4f;
+    --pen-soft: rgba(255, 107, 79, 0.13);
+    --ok: #4cc38a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0d1013;
+  --panel: #161a1e;
+  --panel-2: #1d2227;
+  --line: #2a3036;
+  --line-2: #3a424a;
+  --ink: #e8ecef;
+  --ink-2: #a6b0b8;
+  --ink-3: #6f7b85;
+  --cv: #12161a;
+  --grid-a: #1a1f24;
+  --grid-b: #242b31;
+  --wall: #e4e9ed;
+  --furn: #1f252b;
+  --furn-2: #2a323a;
+  --furn-line: #7d8893;
+  --glass: #27475e;
+  --f-timber: #2a2520;
+  --f-tile: #1e2a2f;
+  --f-carpet: #25222e;
+  --f-stone: #27262a;
+  --pat: rgba(255, 255, 255, 0.06);
+  --you: #7c98ff;
+  --pen: #ff6b4f;
+  --pen-soft: rgba(255, 107, 79, 0.13);
+  --ok: #4cc38a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+body {
+  background: var(--bg);
+}
