@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "plan_twoBed",
+  "name": "Two-bed apartment",
+  "levels": [
+    {
+      "id": "level_1",
+      "name": "Level 1",
+      "walls": [
+        { "id": "w1", "a": [0, 0], "b": [10000, 0], "thickness": 200 },
+        { "id": "w2", "a": [10000, 0], "b": [10000, 7600], "thickness": 200 },
+        { "id": "w3", "a": [10000, 7600], "b": [0, 7600], "thickness": 200 },
+        { "id": "w4", "a": [0, 7600], "b": [0, 0], "thickness": 200 },
+        { "id": "w5", "a": [0, 3800], "b": [10000, 3800], "thickness": 120 },
+        { "id": "w6", "a": [4200, 0], "b": [4200, 3800], "thickness": 120 },
+        { "id": "w7", "a": [6400, 0], "b": [6400, 3800], "thickness": 120 },
+        { "id": "w8", "a": [6200, 3800], "b": [6200, 5000], "thickness": 120 }
+      ],
+      "openings": [
+        { "kind": "door", "id": "d1", "wall": "w5", "at": 3300, "width": 900, "swing": -1, "hinge": "b" },
+        { "kind": "door", "id": "d2", "wall": "w5", "at": 5300, "width": 800, "swing": -1, "hinge": "a" },
+        { "kind": "door", "id": "d3", "wall": "w5", "at": 7300, "width": 900, "swing": -1, "hinge": "a" },
+        { "kind": "door", "id": "d4", "wall": "w3", "at": 4300, "width": 1000, "swing": 1, "hinge": "a" },
+        { "kind": "window", "id": "n1", "wall": "w1", "at": 2100, "width": 1600 },
+        { "kind": "window", "id": "n2", "wall": "w1", "at": 5300, "width": 600 },
+        { "kind": "window", "id": "n3", "wall": "w1", "at": 8200, "width": 1600 },
+        { "kind": "window", "id": "n4", "wall": "w2", "at": 5600, "width": 1400 },
+        { "kind": "window", "id": "n5", "wall": "w3", "at": 2200, "width": 1800 },
+        { "kind": "window", "id": "n6", "wall": "w3", "at": 7300, "width": 2400 },
+        { "kind": "window", "id": "n7", "wall": "w4", "at": 5300, "width": 1200 }
+      ],
+      "rooms": [
+        { "id": "bed1", "name": "Bedroom 1", "rect": { "x": 100, "y": 100, "w": 4040, "h": 3640 }, "floor": "carpet" },
+        { "id": "bath", "name": "Bathroom", "rect": { "x": 4260, "y": 100, "w": 2080, "h": 3640 }, "floor": "tile" },
+        { "id": "bed2", "name": "Bedroom 2", "rect": { "x": 6460, "y": 100, "w": 3440, "h": 3640 }, "floor": "timber" },
+        { "id": "living", "name": "Living & dining", "rect": { "x": 100, "y": 3860, "w": 6040, "h": 3640 }, "floor": "timber" },
+        { "id": "kitchen", "name": "Kitchen", "rect": { "x": 6260, "y": 3860, "w": 3640, "h": 3640 }, "floor": "tile" }
+      ],
+      "items": [
+        { "id": "i_rug", "type": "rug", "label": "Rug", "x": 2950, "y": 5700, "w": 2600, "d": 3000, "rot": 0 },
+        { "id": "i_bed1", "type": "bed", "label": "Queen bed", "x": 2120, "y": 1150, "w": 1600, "d": 2050, "rot": 0 },
+        { "id": "i_ns1a", "type": "nightstand", "label": "Nightstand", "x": 1060, "y": 330, "w": 450, "d": 400, "rot": 0 },
+        { "id": "i_ns1b", "type": "nightstand", "label": "Nightstand", "x": 3180, "y": 330, "w": 450, "d": 400, "rot": 0 },
+        { "id": "i_ward1", "type": "wardrobe", "label": "Wardrobe", "x": 3840, "y": 1500, "w": 1800, "d": 600, "rot": 90 },
+        { "id": "i_dress1", "type": "dresser", "label": "Dresser", "x": 325, "y": 2800, "w": 1200, "d": 450, "rot": 270 },
+        { "id": "i_bath", "type": "bathtub", "label": "Bathtub", "x": 5110, "y": 475, "w": 1700, "d": 750, "rot": 0 },
+        { "id": "i_wc", "type": "toilet", "label": "Toilet", "x": 5990, "y": 2200, "w": 400, "d": 700, "rot": 90 },
+        { "id": "i_van", "type": "vanity", "label": "Vanity", "x": 4485, "y": 2200, "w": 600, "d": 450, "rot": 270 },
+        { "id": "i_bed2", "type": "bed", "label": "Queen bed", "x": 8200, "y": 1125, "w": 1600, "d": 2050, "rot": 0 },
+        { "id": "i_ns2a", "type": "nightstand", "label": "Nightstand", "x": 7160, "y": 330, "w": 450, "d": 400, "rot": 0 },
+        { "id": "i_ns2b", "type": "nightstand", "label": "Nightstand", "x": 9240, "y": 330, "w": 450, "d": 400, "rot": 0 },
+        { "id": "i_ward2", "type": "wardrobe", "label": "Wardrobe", "x": 9600, "y": 2200, "w": 1800, "d": 600, "rot": 90 },
+        { "id": "i_desk", "type": "desk", "label": "Desk", "x": 8300, "y": 3440, "w": 1400, "d": 600, "rot": 180 },
+        { "id": "i_tv", "type": "tv", "label": "TV unit", "x": 300, "y": 5700, "w": 1600, "d": 400, "rot": 270 },
+        { "id": "i_sofa", "type": "sofa", "label": "Sofa", "x": 3800, "y": 5700, "w": 2200, "d": 950, "rot": 90 },
+        { "id": "i_coffee", "type": "coffee", "label": "Coffee table", "x": 2600, "y": 5700, "w": 1200, "d": 600, "rot": 90 },
+        { "id": "i_arm", "type": "armchair", "label": "Armchair", "x": 2500, "y": 4285, "w": 850, "d": 850, "rot": 0 },
+        { "id": "i_dine", "type": "dining", "label": "Dining table (6)", "x": 5300, "y": 5100, "w": 2200, "d": 1500, "rot": 90 },
+        { "id": "i_plant", "type": "plant", "label": "Plant", "x": 450, "y": 7050, "w": 500, "d": 500, "rot": 0 },
+        { "id": "i_cook", "type": "cooktop", "label": "Cooktop run", "x": 8200, "y": 4160, "w": 2600, "d": 600, "rot": 0 },
+        { "id": "i_sink", "type": "sinkunit", "label": "Sink unit", "x": 9600, "y": 5650, "w": 2300, "d": 600, "rot": 90 },
+        { "id": "i_fridge", "type": "fridge", "label": "Fridge", "x": 9550, "y": 7150, "w": 700, "d": 700, "rot": 0 },
+        { "id": "i_isl", "type": "island", "label": "Island", "x": 7900, "y": 5700, "w": 1800, "d": 900, "rot": 0 }
+      ]
+    }
+  ]
+}
