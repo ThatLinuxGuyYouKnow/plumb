@@ -9,7 +9,7 @@ on:
       - ".github/workflows/convert-image.yml"
 
 env:
-  IMAGE: ayobami/plumb-convert
+  IMAGE: ayobamialabi/plumb-convert
   VERSION: "0.2.0"
 
 jobs:
