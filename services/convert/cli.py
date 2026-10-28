@@ -1,8 +1,19 @@
-"""CLI for tests and scripts: dxf | ifc | parse | audit."""
+"""CLI for tests and scripts: dxf | ifc | svg | pdf | png | parse | audit."""
 import json
 import sys
 
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
+
+
+def _plan_and_opts() -> tuple:
+    """stdin: bare plan, .plumb.json, or {plan, options}."""
+    obj = json.load(sys.stdin)
+    if isinstance(obj, dict) and "levels" not in obj and isinstance(obj.get("plan"), dict):
+        opts = obj.get("options") if isinstance(obj.get("options"), dict) else {}
+        return obj["plan"], opts
+    if isinstance(obj, dict) and "levels" in obj:
+        return obj, {}
+    return obj, {}
 
 
 def main() -> int:
@@ -10,13 +21,30 @@ def main() -> int:
     if cmd == "dxf":
         from plumb_dxf import export_dxf_bytes
 
-        plan = json.load(sys.stdin)
+        plan, _ = _plan_and_opts()
         sys.stdout.buffer.write(export_dxf_bytes(plan))
     elif cmd == "ifc":
         from plumb_ifc import export_ifc
 
-        plan = json.load(sys.stdin)
+        plan, _ = _plan_and_opts()
         sys.stdout.write(export_ifc(plan))
+    elif cmd == "svg":
+        from plumb_svg import export_svg
+
+        plan, opts = _plan_and_opts()
+        sys.stdout.write(export_svg(plan, bool(opts.get("trueScale", False)), opts.get("background")))
+    elif cmd == "pdf":
+        from plumb_pdf import export_pdf_bytes
+
+        plan, opts = _plan_and_opts()
+        sys.stdout.buffer.write(export_pdf_bytes(plan, float(opts.get("scale", 50.0))))
+    elif cmd == "png":
+        from plumb_render import render_png_bytes
+
+        plan, opts = _plan_and_opts()
+        sys.stdout.buffer.write(
+            render_png_bytes(plan, int(opts.get("width", 1600)), opts.get("background", "white"))
+        )
     elif cmd == "parse":
         from plumb_parse import parse_dxf_bytes
 
@@ -35,7 +63,7 @@ def main() -> int:
             print(f"- {e}")
         return 1 if auditor.errors else 0
     else:
-        print("usage: cli.py dxf|ifc|parse|audit", file=sys.stderr)
+        print("usage: cli.py dxf|ifc|svg|pdf|png|parse|audit", file=sys.stderr)
         return 2
     return 0
 
