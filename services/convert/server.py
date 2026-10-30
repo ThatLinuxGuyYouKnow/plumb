@@ -272,12 +272,24 @@ class Handler(BaseHTTPRequestHandler):
             self._err(400, f"unknown format '{fmt}' (dxf|dwg|ifc|svg|pdf|png)")
 
 
+def resolve_port(argv: list[str], env) -> int:
+    """Pick the listen port: explicit argv > $PORT > platform default.
+
+    The platform default is 80 on Vercel (its container runtime routes to
+    port 80 unless the PORT project setting overrides it) and 8080
+    everywhere else, so local runs stay unprivileged and match the README /
+    DEPLOY_NEBIUS.md examples.
+    """
+    if len(argv) > 1:
+        return int(argv[1])
+    port = int(env.get("PORT", "0") or "0")
+    if port:
+        return port
+    return 80 if env.get("VERCEL") else 8080
+
+
 def main() -> None:
-    port = int(os.environ.get("PORT", "0") or "0")
-    if len(sys.argv) > 1:
-        port = int(sys.argv[1])
-    if not port:
-        port = 8080
+    port = resolve_port(sys.argv, os.environ)
     srv = ThreadingHTTPServer(("0.0.0.0", port), Handler)
     srv.daemon_threads = True
     print(f"{SERVICE} {VERSION} listening on 0.0.0.0:{port}", flush=True)

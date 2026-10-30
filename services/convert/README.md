@@ -23,6 +23,11 @@ pip install -r requirements.txt
 python3 server.py 3102
 ```
 
+On Vercel the service deploys as the `convert` container service (see root
+`vercel.json`): `server.py` listens on 80 when `VERCEL=1`, matching the
+platform's default container route, so no `PORT` setting is needed. The
+`server` service reaches it over the `CONVERT_URL` service binding.
+
 The Node server proxies `/api/convert/*` there when `CONVERT_URL` is set
 (`CONVERT_TOKEN` forwards a bearer token when the service sets
 `SERVICE_TOKEN`).

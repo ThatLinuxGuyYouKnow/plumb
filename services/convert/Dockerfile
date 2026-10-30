@@ -23,8 +23,10 @@ RUN git clone --depth 1 --branch ${LIBREDWG_TAG} \
 FROM python:3.12-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PORT=8080
+    PYTHONUNBUFFERED=1
+# NOTE: no baked PORT here. server.py listens on $PORT when set (Nebius
+# injects it; `docker run -e PORT=…` overrides), on 80 when VERCEL=1 (the
+# Vercel container runtime routes to port 80 by default), else 8080.
 
 # Runtime libs: cairo/pango for cairosvg (PNG), DejaVu for SVG text.
 # xvfb-run is optional (only used if ODA File Converter is mounted in).
@@ -53,6 +55,6 @@ EXPOSE 8080
 
 # Nebius health check: GET /health
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD python3 -c "import os,urllib.request;urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\",\"8080\")}/health',timeout=4)"
+  CMD python3 -c "import os,urllib.request;urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\") or (80 if os.environ.get(\"VERCEL\") else 8080)}/health',timeout=4)"
 
 CMD ["python3", "server.py"]

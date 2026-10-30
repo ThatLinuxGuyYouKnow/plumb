@@ -39,8 +39,14 @@ app.post('/api/agent', async (c) => {
 
 app.all('/api/convert/*', (c) => handleConvertProxy(c, c.req.path.replace(/^\/api\/convert/, '') || '/'));
 
-serve({ fetch: app.fetch, port: PORT }, () => {
-  console.log(`plumb server on :${PORT}`);
-});
+// On Vercel the platform invokes the default-exported app per request, so
+// only bind a port for local runs (`pnpm dev`, `pnpm start`, `vercel dev`
+// through the Hono preset). An unconditional serve() crashes serverless.
+if (!process.env.VERCEL) {
+  serve({ fetch: app.fetch, port: PORT }, () => {
+    console.log(`plumb server on :${PORT}`);
+  });
+}
 
 export { app };
+export default app;
